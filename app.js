@@ -1,6 +1,31 @@
 // Turnos reservados
 let citas = JSON.parse(localStorage.getItem("citas")) || [];
 
+// Carga de servicios desde JSON remoto
+async function cargarServicios() {
+    try {   
+        const response = await fetch("https://raw.githubusercontent.com/CinthiaLeng/SRM-RESERVAS-DE-TURNOS/refs/heads/json/servicios.json");
+        const servicios = await response.json();
+
+        const selectServicio = document.getElementById("tipo-servicio");
+        selectServicio.innerHTML = ""; // Limpiar opciones existentes
+        servicios.forEach(servicio => {
+            const option = document.createElement("option");
+            option.value = servicio.id;
+            option.textContent = servicio.nombre;
+            selectServicio.appendChild(option);
+        });
+    } catch (error) {
+Swal.Fire({
+    icon: "error",
+    title: "Error",
+    text: "No se pudo cargar la lista de servicios. Intente nuevamente.",
+
+        });
+    }
+}
+
+
 // Precios de los servicios
 const precios = {
     consulta: 15000,
@@ -139,3 +164,26 @@ document.getElementById("tabla-citas").addEventListener("click", (event) => {
         eliminarCita(id);
     }
 });
+
+// Obtener datos del servicio desde el JSON remoto
+
+try {   
+    const response = await fetch("https://raw.githubusercontent.com/CinthiaLeng/SRM-RESERVAS-DE-TURNOS/refs/heads/json/servicios.json");
+    const servicios = await response.json();
+
+    const selectServicio = document.getElementById("tipo-servicio");
+    selectServicio.innerHTML = ""; // Limpiar opciones existentes
+    servicios.forEach(servicio => {
+        const option = document.createElement("option");
+        option.value = servicio.id;
+        option.textContent = servicio.nombre;
+        selectServicio.appendChild(option);
+    });
+}
+catch (error) {
+    Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "No se pudo cargar la lista de servicios. Intente nuevamente.",
+    });
+}
