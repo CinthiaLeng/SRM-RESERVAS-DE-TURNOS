@@ -1,0 +1,7 @@
+[
+{"id": "acupuntura", "nombre": "Acupuntura", "costo": 30000 },
+{"id": "dolor", "nombre": "Tratamiento del Dolor", "costo": 30000},
+{"id": "homeopatía", "nombre": "Homeopatía", "costo": 20000},
+{"id": "obesidad", "nombre": "Obesidad", "costo": 20000},
+{"id": "cardiologia", "nombre": "Atención Cardiológica", "costo": 30000}
+]
